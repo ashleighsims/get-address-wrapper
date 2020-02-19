@@ -1,0 +1,45 @@
+{
+    "name": "ashleighsims/get-address-wrapper",
+    "description": ":package_description",
+    "license": "license",
+    "authors": [
+        {
+            "name": "Ashleigh Sims",
+            "email": "sims@ashleighsims.co.uk",
+            "homepage": "http://www.ashleighsims.co.uk"
+        }
+    ],
+    "homepage": "https://github.com/ashleighsims/get-address-wrapper",
+    "keywords": ["Laravel", "GetAddressWrapper"],
+    "require": {
+        "php": "^7.1.8 || ^8.0",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3|~4",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AshleighSims\\GetAddressWrapper\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AshleighSims\\GetAddressWrapper\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AshleighSims\\GetAddressWrapper\\Laravel\\GetAddressWrapperServiceProvider"
+            ],
+            "aliases": {
+                "GetAddressWrapper": "AshleighSims\\GetAddressWrapper\\Laravel\\Facades\\GetAddressWrapper"
+            }
+        }
+    }
+}
