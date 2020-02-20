@@ -10,7 +10,7 @@
         }
     ],
     "homepage": "https://github.com/ashleighsims/get-address-wrapper",
-    "keywords": ["Laravel", "GetAddressWrapper"],
+    "keywords": ["Laravel", "Get Address IO", "Postcode Address Lookup"],
     "require": {
         "php": "^7.1.8 || ^8.0",
         "ext-json": "*",
