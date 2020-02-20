@@ -1,7 +1,7 @@
 {
     "name": "ashleighsims/get-address-wrapper",
-    "description": ":package_description",
-    "license": "license",
+    "description": "Get Address IO wrapper covering all endpoints available from the API.",
+    "license": "MIT",
     "authors": [
         {
             "name": "Ashleigh Sims",
