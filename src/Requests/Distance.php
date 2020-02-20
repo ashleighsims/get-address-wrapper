@@ -2,6 +2,7 @@
 
 namespace AshleighSims\GetAddressWrapper\Requests;
 
+use AshleighSims\GetAddressWrapper\Parser;
 use AshleighSims\GetAddressWrapper\Requests\Base\Request;
 
 class Distance extends Request
@@ -28,6 +29,6 @@ class Distance extends Request
      */
     public function between(string $postCodeTo, string $postCodeFrom)
     {
-        return $this->request(self::METHOD_GET, sprintf('distance/%s/%s', $postCodeFrom, $postCodeTo));
+        return Parser::distanceBetween($this->request(self::METHOD_GET, sprintf('distance/%s/%s', $postCodeFrom, $postCodeTo)));
     }
 }

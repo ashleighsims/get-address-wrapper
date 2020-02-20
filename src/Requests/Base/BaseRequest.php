@@ -72,11 +72,10 @@ abstract class BaseRequest
             if($e->getCode() == 401) {
                 throw new ApiKeyInvalidException;
             }
-
             throw new GetAddressIOException;
         }
 
-        return $response->getBody()->getContents();
+        return json_decode($response->getBody()->getContents(), true);
     }
 
     /**
@@ -119,7 +118,7 @@ abstract class BaseRequest
      * @param array $data
      * @return array
      */
-    protected function setData(array $options, array $data) {
+    protected function setData(array $options, array $data = []) {
         if(!empty($data)) {
             $options['json'] = $data;
         }

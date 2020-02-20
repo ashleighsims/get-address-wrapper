@@ -2,6 +2,7 @@
 
 namespace AshleighSims\GetAddressWrapper\Requests;
 
+use AshleighSims\GetAddressWrapper\Parser;
 use AshleighSims\GetAddressWrapper\Requests\Base\AdminRequest;
 use Carbon\Carbon;
 
@@ -27,7 +28,7 @@ class Usage extends AdminRequest
      */
     public function get()
     {
-        return  $this->request(self::METHOD_GET, 'v3/usage/');
+        return Parser::usageGet($this->request(self::METHOD_GET, 'v3/usage/'));
     }
 
     /**
@@ -43,8 +44,8 @@ class Usage extends AdminRequest
     {
         $usageDate = Carbon::createFromFormat($format, $date);
 
-        return  $this->request(self::METHOD_GET,
-            sprintf('v3/usage/%s/%s/%s', $usageDate->day, $usageDate->month, $usageDate->year));
+        return Parser::usageGet($this->request(self::METHOD_GET,
+            sprintf('v3/usage/%s/%s/%s', $usageDate->day, $usageDate->month, $usageDate->year)));
     }
 
     /**
@@ -62,9 +63,9 @@ class Usage extends AdminRequest
         $usageFromDate = Carbon::createFromFormat($format, $fromDate);
         $usageToDate = Carbon::createFromFormat($format, $toDate);
 
-        return $this->request(self::METHOD_GET,
+        return Parser::usageGetBetween($this->request(self::METHOD_GET,
             sprintf('usage/from/%s/%s/%s/To/%s/%s/%s',
                 $usageFromDate->day, $usageFromDate->month, $usageFromDate->year,
-                $usageToDate->day, $usageToDate->month, $usageToDate->year));
+                $usageToDate->day, $usageToDate->month, $usageToDate->year)));
     }
 }

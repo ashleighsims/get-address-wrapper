@@ -2,6 +2,7 @@
 
 namespace AshleighSims\GetAddressWrapper\Requests;
 
+use AshleighSims\GetAddressWrapper\Parser;
 use AshleighSims\GetAddressWrapper\Requests\Base\GooglePlacesRequest;
 
 class AutoCompletePostcode extends GooglePlacesRequest
@@ -28,6 +29,7 @@ class AutoCompletePostcode extends GooglePlacesRequest
      */
     public function complete(string $postCode)
     {
-        return $this->request(self::METHOD_GET, sprintf('auto-complete/postcodes/%s', $postCode));
+        return Parser::autoCompletePostcode($this->request(self::METHOD_GET,
+            sprintf('auto-complete/postcodes/%s?api-key=%s&google-api-key=%s', $postCode, $this->apiKey, $this->googlePlacesApiKey)));
     }
 }
