@@ -2,6 +2,7 @@
 
 namespace AshleighSims\GetAddressWrapper\Requests;
 
+use AshleighSims\GetAddressWrapper\Parser;
 use AshleighSims\GetAddressWrapper\Requests\Base\AdminRequest;
 
 class PrivateAddress extends AdminRequest
@@ -26,7 +27,7 @@ class PrivateAddress extends AdminRequest
      * @throws \AshleighSims\GetAddressWrapper\Exceptions\ApiKeyInvalidException
      * @throws \AshleighSims\GetAddressWrapper\Exceptions\GetAddressIOException
      */
-    public function add(string $postCode, array $address)
+    public function add(string $postCode, array $address) : array
     {
         return $this->request(self::METHOD_POST, sprintf('private-address/%s', $postCode), $address);
     }
@@ -40,7 +41,7 @@ class PrivateAddress extends AdminRequest
      * @throws \AshleighSims\GetAddressWrapper\Exceptions\ApiKeyInvalidException
      * @throws \AshleighSims\GetAddressWrapper\Exceptions\GetAddressIOException
      */
-    public function delete(string $postCode, string $id)
+    public function delete(string $postCode, string $id) : array
     {
         return $this->request(self::METHOD_DELETE, sprintf('private-address/%s/%s', $postCode, $id));
     }
@@ -56,7 +57,7 @@ class PrivateAddress extends AdminRequest
      */
     public function get(string $postCode, string $id)
     {
-        return $this->request(self::METHOD_GET, sprintf('private-address/%s/%s', $postCode, $id));
+        return Parser::privateAddressGet($this->request(self::METHOD_GET, sprintf('private-address/%s/%s', $postCode, $id)));
     }
 
     /**
@@ -67,8 +68,8 @@ class PrivateAddress extends AdminRequest
      * @throws \AshleighSims\GetAddressWrapper\Exceptions\ApiKeyInvalidException
      * @throws \AshleighSims\GetAddressWrapper\Exceptions\GetAddressIOException
      */
-    public function list(string $postCode)
+    public function list(string $postCode) : array
     {
-        return $this->request(self::METHOD_GET, sprintf('private-address/%s', $postCode));
+        return Parser::privateAddressList($this->request(self::METHOD_GET, sprintf('private-address/%s', $postCode)));
     }
 }

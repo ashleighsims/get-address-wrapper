@@ -2,7 +2,9 @@
 
 namespace AshleighSims\GetAddressWrapper\Requests;
 
+use AshleighSims\GetAddressWrapper\Parser;
 use AshleighSims\GetAddressWrapper\Requests\Base\Request;
+use AshleighSims\GetAddressWrapper\Response\Address;
 
 class FindByPostcode extends Request
 {
@@ -21,13 +23,13 @@ class FindByPostcode extends Request
      * Find addresses of a given post code.
      *
      * @param string $postCode
-     * @return mixed
+     * @return array
      * @throws \AshleighSims\GetAddressWrapper\Exceptions\ApiKeyInvalidException
      * @throws \AshleighSims\GetAddressWrapper\Exceptions\GetAddressIOException
      */
-    public function find(string $postCode)
+    public function find(string $postCode) : array
     {
-        return $this->request(self::METHOD_GET, sprintf('/find/%s', $postCode));
+        return Parser::findByPostCode($this->request(self::METHOD_GET, sprintf('/find/%s', $postCode)));
     }
 
     /**
@@ -35,12 +37,12 @@ class FindByPostcode extends Request
      *
      * @param string $postCode
      * @param string $number
-     * @return mixed
+     * @return Address
      * @throws \AshleighSims\GetAddressWrapper\Exceptions\ApiKeyInvalidException
      * @throws \AshleighSims\GetAddressWrapper\Exceptions\GetAddressIOException
      */
-    public function findWithNumber(string $postCode, string $number)
+    public function findWithNumber(string $postCode, string $number) : Address
     {
-        return $this->request(self::METHOD_GET, sprintf('/find/%s/%s', $postCode, $number));
+        return Parser::findByPostCodeAndNumber($this->request(self::METHOD_GET, sprintf('/find/%s/%s', $postCode, $number)));
     }
 }

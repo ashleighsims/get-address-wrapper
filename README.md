@@ -90,12 +90,16 @@ $getAddress = new GetAddressWrapper('api-key', 'admin-api-key', 'google-places-a
 $response = $getAddress->findByPostcode()->find('SW1A 1AA');
 ```
 
+Return: Array of AshleighSims\GetAddressWrapper\Response\Address Objects
+
 ##### Address from postcode and building number
 
 ```php
 $getAddress = new GetAddressWrapper('api-key', 'admin-api-key', 'google-places-api-key', 'https://api.getAddress.io');
 $response = $getAddress->findByPostcode()->findWithNumber('SW1A 1AA', 'Buckingham Palace');
 ```
+
+Return: Object AshleighSims\GetAddressWrapper\Response\Address
 
 #### Distance
 
@@ -104,12 +108,16 @@ $getAddress = new GetAddressWrapper('api-key', 'admin-api-key', 'google-places-a
 $response = $getAddress->distance()->between('SW1A 1AA', 'SL4 1QF');
 ```
 
+Return: Object AshleighSims\GetAddressWrapper\Response\Distance
+
 #### Autocomplete - Postcodes
 
 ```php
 $getAddress = new GetAddressWrapper('api-key', 'admin-api-key', 'google-places-api-key', 'https://api.getAddress.io');
 $response = $getAddress->autoCompletePostcode()->complete('SW1A');
 ```
+
+Return: Object AshleighSims\GetAddressWrapper\Response\GooglePlacesPostcodePrediction
 
 #### Autocomplete - Places
 
@@ -120,12 +128,16 @@ $getAddress = new GetAddressWrapper('api-key', 'admin-api-key', 'google-places-a
 $response = $getAddress->>autoCompletePlaces()->complete('Buckingham');
 ```
 
+Return: Array of AshleighSims\GetAddressWrapper\Response\GooglePlacesPrediction Objects
+
 ##### Place Details
 
 ```php
 $getAddress = new GetAddressWrapper('api-key', 'admin-api-key', 'google-places-api-key', 'https://api.getAddress.io');
-$response = $getAddress->autoCompletePlaces()->findByGooglePlacesId('EiJCdWNraW5naGFtIFBhbGFjZSBSb2FkLCBMb25kb24sIFVLIi4qLAoUChIJwUK09SEFdkgRnmSjxe2y1OoSFAoSCRsEfKwhBXZIEQ7hlFXIJLTX');
+$response = $getAddress->autoCompletePlaces()->findByGooglePlacesId('ChIJtV5bzSAFdkgRpwLZFPWrJgo');
 ```
+
+Return: Object AshleighSims\GetAddressWrapper\Response\GooglePlace
 
 #### Usage
 
@@ -136,6 +148,8 @@ $getAddress = new GetAddressWrapper('api-key', 'admin-api-key', 'google-places-a
 $response = $getAddress->usage()->get();
 ```
 
+Return: Object AshleighSims\GetAddressWrapper\Response\Usage
+
 ##### Given date
 
 ```php
@@ -143,12 +157,16 @@ $getAddress = new GetAddressWrapper('api-key', 'admin-api-key', 'google-places-a
 $response = $getAddress->usage()->getByDate('18/02/2020', 'd/m/Y');
 ```
 
+Return: Object AshleighSims\GetAddressWrapper\Response\Usage
+
 ##### Date range
 
 ```php
 $getAddress = new GetAddressWrapper('api-key', 'admin-api-key', 'google-places-api-key', 'https://api.getAddress.io');
 $response = $getAddress->usage()->getBetween('18/02/2020', '19/02/2020', 'd/m/Y');
 ```
+
+Return: Array of AshleighSims\GetAddressWrapper\Response\DailyUsage Objects
 
 #### Private Address List
 
@@ -167,12 +185,16 @@ $response = $getAddress->privateAddress()->add('SW1A 1AA', [
                                  ]);
 ```
 
+Return: JSON decoded associative array
+
 ##### Delete address
 
 ```php
 $getAddress = new GetAddressWrapper('api-key', 'admin-api-key', 'google-places-api-key', 'https://api.getAddress.io');
 $response = $getAddress->privateAddress()->delete('SW1A 1AA', '1');
 ```
+
+Return: JSON decoded associative array
 
 ##### Get address
 
@@ -181,12 +203,16 @@ $getAddress = new GetAddressWrapper('api-key', 'admin-api-key', 'google-places-a
 $response = $getAddress->privateAddress()->get('SW1A 1AA', '1');
 ```
 
+Return: Object AshleighSims\GetAddressWrapper\Response\PrivateAddress
+
 ##### List addresses
 
 ```php
 $getAddress = new GetAddressWrapper('api-key', 'admin-api-key', 'google-places-api-key', 'https://api.getAddress.io');
 $response = $getAddress->privateAddress()->list('SW1A 1AA');
 ```
+
+Return: Array of AshleighSims\GetAddressWrapper\Response\PrivateAddress Objects
 
 ## Change log
 

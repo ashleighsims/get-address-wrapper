@@ -108,11 +108,11 @@ class GetAddressWrapper
      */
     public function autoCompletePostcode()
     {
-        if($this->adminApiKey == '' || $this->googlePlacesApiKey == '') {
+        if($this->apiKey == '' || $this->googlePlacesApiKey == '') {
             throw new MissingApiKeyException;
         }
 
-        return new AutoCompletePostcode($this->adminApiKey, $this->googlePlacesApiKey, $this->baseUrl);
+        return new AutoCompletePostcode($this->apiKey, $this->googlePlacesApiKey, $this->baseUrl);
     }
 
     /**
@@ -123,10 +123,10 @@ class GetAddressWrapper
      */
     public function autoCompletePlaces()
     {
-        if($this->adminApiKey == '' || $this->googlePlacesApiKey == '') {
+        if($this->apiKey == '' || $this->googlePlacesApiKey == '') {
             throw new MissingApiKeyException;
         }
 
-        return new AutoCompletePlaces($this->adminApiKey, $this->googlePlacesApiKey, $this->baseUrl);
+        return new AutoCompletePlaces($this->apiKey, $this->googlePlacesApiKey, $this->baseUrl);
     }
 }

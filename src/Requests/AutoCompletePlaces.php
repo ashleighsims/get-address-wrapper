@@ -4,6 +4,7 @@ namespace AshleighSims\GetAddressWrapper\Requests;
 
 use App\Services\GetAddressIOLaravel\Src\Dto\GooglePlacesDto;
 use App\Services\GetAddressIOLaravel\Src\Dto\PredictionDto;
+use AshleighSims\GetAddressWrapper\Parser;
 use AshleighSims\GetAddressWrapper\Requests\Base\GooglePlacesRequest;
 
 class AutoCompletePlaces extends GooglePlacesRequest
@@ -11,13 +12,13 @@ class AutoCompletePlaces extends GooglePlacesRequest
     /**
      * AutoCompletePlaces constructor.
      *
-     * @param string $adminApiKey
+     * @param string $apiKey
      * @param string $googlePlacesApiKey
      * @param string $baseUrl
      */
-    public function __construct(string $adminApiKey, string $googlePlacesApiKey, string $baseUrl)
+    public function __construct(string $apiKey, string $googlePlacesApiKey, string $baseUrl)
     {
-        parent::__construct($adminApiKey, $googlePlacesApiKey, $baseUrl);
+        parent::__construct($apiKey, $googlePlacesApiKey, $baseUrl);
     }
 
     /**
@@ -30,7 +31,8 @@ class AutoCompletePlaces extends GooglePlacesRequest
      */
     public function complete(string $placeName)
     {
-        return $this->request(self::METHOD_GET, sprintf('auto-complete/places/%s', $placeName));
+        return Parser::autoCompletePlaces($this->request(self::METHOD_GET,
+            sprintf('auto-complete/places/%s?api-key=%s&google-api-key=%s', $placeName, $this->apiKey, $this->googlePlacesApiKey)));
     }
 
     /**
@@ -43,6 +45,7 @@ class AutoCompletePlaces extends GooglePlacesRequest
      */
     public function findByGooglePlacesId(string $placeId)
     {
-        return $this->request(self::METHOD_GET, sprintf('google/place-details/%s', $placeId));
+        return Parser::autoCompletePlacesFindByPlacesId($this->request(self::METHOD_GET,
+            sprintf('google/place-details/%s?api-key=%s&google-api-key=%s', $placeId, $this->apiKey, $this->googlePlacesApiKey)));
     }
 }
